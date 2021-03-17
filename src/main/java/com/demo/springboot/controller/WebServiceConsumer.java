@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
+import com.demo.springboot.model.Student;
+
 /**
  * Demo for Rest Template. This Web Service consumes our own students web
  * services defined in {@code WebServiceController}.

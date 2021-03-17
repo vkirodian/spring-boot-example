@@ -1,8 +1,6 @@
 package com.demo.springboot.controller;
 
-import java.util.HashMap;
-import java.util.Map;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,7 +11,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.demo.springboot.exception.InvalidStudentIdException;
-import com.demo.springboot.exception.StudentNotFoundException;
+import com.demo.springboot.model.Student;
+import com.demo.springboot.service.WebService;
 
 /**
  * Here we will test GET/POST/PUT/DELETE methods using Rest APIs.
@@ -25,29 +24,18 @@ import com.demo.springboot.exception.StudentNotFoundException;
 @RequestMapping(value = "/student")
 public class WebServiceController {
 
-	private static Map<String, Student> studentMap = new HashMap<>();
-	static {
-		Student johnDoe = new Student("1","John Doe");
-		studentMap.put(johnDoe.getId(), johnDoe);
-
-		Student maryFoo = new Student("2","Mary Foo");
-		studentMap.put(maryFoo.getId(), maryFoo);
-	}
+	@Autowired
+	WebService webService;
 
 	@RequestMapping(value = "/students/{id}", method = RequestMethod.DELETE)
 	public ResponseEntity<Object> delete(@PathVariable("id") String id) {
-		studentMap.remove(id);
+		webService.deleteStudent(id);
 		return new ResponseEntity<>("Student is deleted successsfully", HttpStatus.OK);
 	}
 
 	@RequestMapping(value = "/students/{id}", method = RequestMethod.PUT)
 	public ResponseEntity<Object> updateStudent(@PathVariable("id") String id, @RequestBody Student student) {
-		if (!studentMap.containsKey(id)) {
-			throw new StudentNotFoundException("Student with ID" + id + " not found.");
-		}
-		studentMap.remove(id);
-		student.setId(id);
-		studentMap.put(id, student);
+		webService.updateStudent(id, student);
 		return new ResponseEntity<>("Student is updated successsfully", HttpStatus.OK);
 	}
 
@@ -56,44 +44,18 @@ public class WebServiceController {
 		if (Integer.parseInt(student.getId()) < 1) {
 			throw new InvalidStudentIdException();
 		}
-		studentMap.put(student.getId(), student);
+		webService.createStudent(student);
 		return new ResponseEntity<>("Student is created successfully", HttpStatus.CREATED);
 	}
 
 	@RequestMapping(value = "/students")
 	public ResponseEntity<Object> getStudent() {
-		return new ResponseEntity<>(studentMap.values(), HttpStatus.OK);
+		return new ResponseEntity<>(webService.getStudents(), HttpStatus.OK);
 	}
 
 	@RequestMapping(value = "/students/byId")
 	public ResponseEntity<Student> getStudentRP(
 			@RequestParam(value = "id", defaultValue = "1", required = false) String id) {
-		return new ResponseEntity<>(studentMap.get(id), HttpStatus.OK);
-	}
-}
-
-class Student {
-	private String id;
-	private String name;
-
-	public Student(String id, String name) {
-		this.id = id;
-		this.name = name;
-	}
-
-	public String getId() {
-		return id;
-	}
-
-	public void setId(String id) {
-		this.id = id;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
+		return new ResponseEntity<>(webService.getStudent(id), HttpStatus.OK);
 	}
 }
