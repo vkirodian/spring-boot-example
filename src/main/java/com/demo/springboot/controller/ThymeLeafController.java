@@ -31,7 +31,7 @@ public class ThymeLeafController {
 	}
 
 	@PostMapping("/addStudent")
-	public String addUser(Student student, BindingResult result, Model model) {
+	public String addStudent(Student student, BindingResult result, Model model) {
 		webService.createStudent(student);
 		return "redirect:/tl/index";
 	}
@@ -64,5 +64,15 @@ public class ThymeLeafController {
 	public String deleteStudent(@PathVariable("id") String id, Model model) {
 		webService.deleteStudent(id);
 		return "redirect:/tl/index";
+	}
+
+	@RequestMapping("/view-students")
+	public String viewStudents() {
+	   return "/view-students";
+	}
+
+	@RequestMapping("/add-students")
+	public String addStudents() {
+	   return "/add-students";
 	}
 }
