@@ -126,7 +126,7 @@ You can also add new students.
 GET http://localhost:8081/tl/index
 ```
 
-Uses <b>AJAX<\b> calls to access http://localhost:8081/student/students API.
+Uses <b>AJAX</b> calls to access http://localhost:8081/student/students API.
 
 This uses GET call.
 
@@ -188,6 +188,17 @@ Before you can run in prod profile, generate self-signed certificate.
 keytool -genkey -alias mycert -storetype PKCS12 -keyalg RSA -keysize 2048 -keystore keystore.p12 -validity 3650
 ```
 The generated keystore.p12 file should be stored at /keystore directory parallel to the application jar file.
+
+<b>Eureka Client</b>
+
+This application acts as a client for Eureka server running on http://localhost:8761/eureka.
+
+This application registers it self with Eureka server as spring-boot-example.
+
+If you want to see this application get registered as a client, you need to run the Eureka Server as well.
+
+Download from : https://github.com/vkirodian/microservices-eureka-demo
+
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
