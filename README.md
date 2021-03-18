@@ -20,7 +20,9 @@ java -jar .\target\spring-boot-example-1.jar
 The application runs on port 8081.
 http://localhost:8081/test/
 
-You can also provide dev or prod properties file runnning the application.
+You can also provide dev or prod properties file running the application.
+
+<i>Note: If you want to run prod profile, kindly refer HTTPS Support section first</i>
 
 ```bash
 java -jar .\target\spring-boot-example-1.jar --spring.profiles.active=dev
@@ -37,7 +39,14 @@ You can check logging using
 ```bash
 http://localhost:8081/test/testLogging
 ```
-GET/POST/PUT/DELETE API's : com.demo.springboot.controller.WebServiceController class
+
+<b>GET/POST/PUT/DELETE API's</b>
+
+For more details check following java class 
+
+```java 
+com.demo.springboot.controller.WebServiceController 
+```
 
 ```bash
 GET http://localhost:8081/student/students
@@ -64,7 +73,8 @@ body
 ```bash
 DELETE http://localhost:8081/student/students/3
 ```
-File Upload/Download
+
+<b>File Upload/Download</b>
 
 Upload API saves the uploaded file at /images directory
 
@@ -76,7 +86,17 @@ Download API would provide you with an image file from /images/imagefordownload.
 ```bash
 GET http://localhost:8081/file/download
 ```
-Rest Template Example : com.demo.springboot.controller.WebServiceConsumer class
+
+<i>Note: The /images directory should be parallel to the applications jar file</i>
+
+
+<b>Rest Template Example</b>
+
+For more details refer following java class
+
+```java
+com.demo.springboot.controller.WebServiceConsumer
+```
 Consumes the above defines student/* API's
 
 ```bash
@@ -92,8 +112,13 @@ PUT http://localhost:8081/cons/students
 DELETE http://localhost:8081/cons/students
 ```
 
-ThymeLeaf Example : com.demo.springboot.controller.ThymeLeafController class
+<b>ThymeLeaf Example</b>
 
+For more details refer following java class
+
+```java
+com.demo.springboot.controller.ThymeLeafController class
+```
 Lists all the students in the system, gives you option to edit/delete any student.
 You can also add new students.
 
@@ -101,17 +126,22 @@ You can also add new students.
 GET http://localhost:8081/tl/index
 ```
 
-Uses AJAX calls to access http://localhost:8081/student/students API.
+Uses <b>AJAX<\b> calls to access http://localhost:8081/student/students API.
+
 This uses GET call.
 
 ```bash
 http://localhost:8081/tl/view-students
 ```
-This uses POSt call.
+
+This uses POST call.
 
 ```bash
 http://localhost:8081/tl/add-students
 ```
+
+<b>CORS</b>
+
 If you want to test <b>CORS</b> implementation than run two instances of this application.
 One without any profile(running on port 8081)
 Another with DEV profile(running on port 8082)
@@ -131,6 +161,33 @@ public WebMvcConfigurer corsConfigurer() {
 	};
 }
 ```
+
+
+<b>Internationalization</b>
+
+Refer to InternationalizationConfig, LocalizationInterceptor, InterceptorConfig for required code.
+
+```bash
+http://localhost:8081/tl/locale
+```
+
+<b>Scheduling</b>
+
+For more details refer following java class
+
+```java
+com.demo.springboot.scheduler.Scheduler class
+```
+
+<b>HTTPS Support</b>
+
+By default the prod profile runs on HTTPS(port 443).
+Before you can run in prod profile, generate self-signed certificate.
+
+```bash
+keytool -genkey -alias mycert -storetype PKCS12 -keyalg RSA -keysize 2048 -keystore keystore.p12 -validity 3650
+```
+The generated keystore.p12 file should be stored at /keystore directory parallel to the application jar file.
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.

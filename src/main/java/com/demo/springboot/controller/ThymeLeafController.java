@@ -68,11 +68,16 @@ public class ThymeLeafController {
 
 	@RequestMapping("/view-students")
 	public String viewStudents() {
-	   return "/view-students";
+		return "/view-students";
 	}
 
 	@RequestMapping("/add-students")
 	public String addStudents() {
-	   return "/add-students";
+		return "/add-students";
+	}
+
+	@RequestMapping("/locale")
+	public String locale() {
+		return "locale";
 	}
 }
