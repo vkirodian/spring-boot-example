@@ -191,7 +191,7 @@ The generated keystore.p12 file should be stored at /keystore directory parallel
 
 <b>Eureka Client</b>
 
-This application acts as a client for Eureka server running on http://localhost:8761/eureka.
+This application acts as a client for Eureka server running on http://localhost:8761.
 
 This application registers it self with Eureka server as spring-boot-example.
 
@@ -199,6 +199,14 @@ If you want to see this application get registered as a client, you need to run 
 
 Download from : https://github.com/vkirodian/microservices-eureka-demo
 
+
+<b>Cloud Configuration Client</b>
+
+This application acts as a client for configuration server running on http://localhost:8888/spring-boot-example/default
+
+To test this you need to download and run Cloud Configuration Server from https://github.com/vkirodian/microservices-config-server-demo.
+
+The following API : http://localhost:8081/test/configServerProps fetches the properties stored in GitHub. For more details refer README for microservices-config-server-demo.
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.

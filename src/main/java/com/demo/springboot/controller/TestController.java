@@ -2,6 +2,8 @@ package com.demo.springboot.controller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -11,11 +13,18 @@ import org.springframework.web.bind.annotation.RestController;
  * @author Vijesh Kirodian
  *
  */
+@RefreshScope
 @RestController
 @RequestMapping("/test")
 public class TestController {
 
 	private static final Logger LOG = LoggerFactory.getLogger(TestController.class);
+
+	@Value("${config.msg:Not_Working}")
+	private String message;
+
+	@Value("${config.name:NO_NAME}")
+	private String name;
 
 	@RequestMapping(value = "/")
 	public String hello() {
@@ -30,6 +39,11 @@ public class TestController {
 		LOG.warn("This is a warn log");
 		LOG.error("This is a error log");
 		return "Check your logs";
+	}
+
+	@RequestMapping(value = "/configServerProps")
+	public String loadPropertiesFromConfigServer() {
+		return "Message:" + message + "--Name:" + name;
 	}
 
 }
