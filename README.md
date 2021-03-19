@@ -215,6 +215,29 @@ The following API fetches the properties stored in GitHub. For more details refe
 http://localhost:8081/test/configServerProps
 ```
 
+<b>Actuator Support</b>
+
+Access actuator API at
+
+```bash
+http://localhost:8081/actuator/
+```
+
+<b>Cloud Administrator Client Support</b>
+
+This application has exposed monitoring and management data via Actuator, these data can be accessed using Admin Client support.
+
+Configurations has been added to look for Administrator Server at port 9090.
+
+Download and run https://github.com/vkirodian/microservices-admin-server-demo.
+
+You should be able to see all the monitoring and management data at
+
+```bash
+http://localhost:9090/
+```
+For more details refer ReadMe file at microservices-admin-server-demo project.
+
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
