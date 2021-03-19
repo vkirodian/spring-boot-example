@@ -202,11 +202,18 @@ Download from : https://github.com/vkirodian/microservices-eureka-demo
 
 <b>Cloud Configuration Client</b>
 
-This application acts as a client for configuration server running on http://localhost:8888/spring-boot-example/default
+This application acts as a client for configuration server running on
 
+```bash
+http://localhost:8888/spring-boot-example/default
+```
 To test this you need to download and run Cloud Configuration Server from https://github.com/vkirodian/microservices-config-server-demo.
 
-The following API : http://localhost:8081/test/configServerProps fetches the properties stored in GitHub. For more details refer README for microservices-config-server-demo.
+The following API fetches the properties stored in GitHub. For more details refer README for microservices-config-server-demo.
+
+```bash
+http://localhost:8081/test/configServerProps
+```
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
