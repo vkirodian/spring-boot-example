@@ -258,6 +258,14 @@ app.sender.email, app.sender.password, app.receiver.email.
 
 You might also have to temporarily provide access to 'Less secure app' in gmail.
 
+<b>Web Socket Support</b>
+
+```bash
+http://localhost:8081/tl/websocket
+```
+
+
+
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 

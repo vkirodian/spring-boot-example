@@ -80,4 +80,9 @@ public class ThymeLeafController {
 	public String locale() {
 		return "locale";
 	}
+	
+	@RequestMapping("/websocket")
+	public String websocket() {
+		return "websocket";
+	}
 }

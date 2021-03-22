@@ -62,6 +62,4 @@ public class TestController {
 		emailService.sendmail();
 	   return "Email sent successfully";   
 	}
-
-
 }
