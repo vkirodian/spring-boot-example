@@ -1,11 +1,19 @@
 package com.demo.springboot.controller;
 
+import java.io.IOException;
+
+import javax.mail.MessagingException;
+import javax.mail.internet.AddressException;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.demo.springboot.service.EmailService;
 
 /**
  * Basic controller to check if application is working fine.
@@ -25,6 +33,9 @@ public class TestController {
 
 	@Value("${config.name:NO_NAME}")
 	private String name;
+	
+	@Autowired
+	private EmailService emailService;
 
 	@RequestMapping(value = "/")
 	public String hello() {
@@ -45,5 +56,12 @@ public class TestController {
 	public String loadPropertiesFromConfigServer() {
 		return "Message:" + message + "--Name:" + name;
 	}
+	
+	@RequestMapping(value = "/sendemail")
+	public String sendEmail() throws AddressException, MessagingException, IOException {
+		emailService.sendmail();
+	   return "Email sent successfully";   
+	}
+
 
 }

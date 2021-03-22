@@ -199,6 +199,7 @@ If you want to see this application get registered as a client, you need to run 
 
 Download from : https://github.com/vkirodian/microservices-eureka-demo
 
+<i>If you with to disable Eureka Client, simply comment @EnableEurekaClient from Main class.</i>
 
 <b>Cloud Configuration Client</b>
 
@@ -237,6 +238,25 @@ You should be able to see all the monitoring and management data at
 http://localhost:9090/
 ```
 For more details refer ReadMe file at microservices-admin-server-demo project.
+
+<b>Swagger2 Support</b>
+
+You can access the API documentation from Swagger2 at
+
+```bash
+http://localhost:8081/swagger-ui.html
+```
+
+<b>Email Support</b>
+
+```bash
+http://localhost:8081/test/sendemail
+```
+
+Before sending email set the following values in properties file:
+app.sender.email, app.sender.password, app.receiver.email.
+
+You might also have to temporarily provide access to 'Less secure app' in gmail.
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
